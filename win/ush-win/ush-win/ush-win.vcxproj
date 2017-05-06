@@ -74,6 +74,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions); _CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -122,8 +123,8 @@
     <ClInclude Include="include\flag.h" />
     <ClInclude Include="include\parser.h" />
     <ClInclude Include="include\types.h" />
+    <ClInclude Include="include\ush.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="ush.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="builtin_cmd\test.cpp" />

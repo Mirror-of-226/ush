@@ -39,7 +39,7 @@
     <ClInclude Include="include\types.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
-    <ClInclude Include="ush.h">
+    <ClInclude Include="include\ush.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
   </ItemGroup>
