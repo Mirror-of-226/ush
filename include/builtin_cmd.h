@@ -2,5 +2,5 @@
 #define _BUILTIN_FUNC_H
 
 class builtin_cmd {
-    virtual run(const char* args[]) = 0;
+    virtual run(int argc, char *argv[]) = 0;
 }
