@@ -5,40 +5,40 @@
 
 ## Builtin commands
 
--[ ] cd
+- [ ] cd
 
 
--[ ] umkdir
+- [ ] umkdir
 
 
--[ ] ucp
+- [ ] ucp
 
 
--[ ] uln
+- [ ] uln
 
 
--[ ] kill
+- [ ] kill
 
 
--[ ] ups
+- [ ] ups
 
 
--[ ] utime
+- [ ] utime
 
 
--[ ] echo
+- [ ] echo
 
 
--[ ] alias
+- [ ] alias
 
 
--[ ] type
+- [ ] type
 
 
--[ ] bg
+- [ ] bg
 
 
--[ ] help
+- [ ] help
 
 
 
