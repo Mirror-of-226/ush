@@ -132,6 +132,7 @@
     <ClCompile Include="builtin_cmd\ucp.cpp" />
     <ClCompile Include="builtin_cmd\uln.cpp" />
     <ClCompile Include="builtin_cmd\umkdir.cpp" />
+    <ClCompile Include="builtin_cmd\utime.cpp" />
     <ClCompile Include="ush.cpp" />
     <ClCompile Include="utility\parser.cpp" />
   </ItemGroup>

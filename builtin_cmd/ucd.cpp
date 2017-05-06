@@ -1,4 +1,4 @@
-##ifdef LINUX
+#ifdef LINUX
 
 #include <unistd.h>
 

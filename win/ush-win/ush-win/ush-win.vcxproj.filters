@@ -65,6 +65,9 @@
     <ClCompile Include="builtin_cmd\test.cpp">
       <Filter>Source Files\builtin_cmd</Filter>
     </ClCompile>
+    <ClCompile Include="builtin_cmd\utime.cpp">
+      <Filter>Source Files\builtin_cmd</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ush-win.rc">

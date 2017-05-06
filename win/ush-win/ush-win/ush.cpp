@@ -1,5 +1,5 @@
-#include "include\ush.h"
-#include "include\parser.h"
+#include "include/ush.h"
+#include "include/parser.h"
 
 using namespace std;
 

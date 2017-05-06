@@ -1,7 +1,7 @@
 #pragma once
 #include <stdio.h>
 #include <map>
-#include "..\include\builtin_cmd.h"
+#include "../include/builtin_cmd.h"
 #include <vector>
 
 #define BUF_SIZE 1024
