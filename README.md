@@ -23,7 +23,7 @@
 - [ ] ups
 
 
-- [ ] utime
+- [x] utime
 
 
 - [ ] echo
@@ -39,6 +39,9 @@
 
 
 - [ ] help
+
+
+- [ ] pwd
 
 
 

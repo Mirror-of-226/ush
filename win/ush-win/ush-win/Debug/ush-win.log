@@ -1,11 +1,9 @@
-﻿  parser.cpp
-  ush.cpp
-  umkdir.cpp
-  uln.cpp
-  ucp.cpp
-  ucd.cpp
-  test.cpp
+﻿  ush.cpp
   utime.cpp
+g:\homework\os\exp6\ush\win\ush-win\ush-win\builtin_cmd\utime.cpp(76): warning C4244: '=': conversion from 'ULONGLONG' to 'int', possible loss of data
+  Generating Code...
+  Compiling...
+  parser.cpp
   Generating Code...
   ush-win.vcxproj -> G:\Homework\OS\exp6\ush\win\ush-win\Debug\ush-win.exe
   ush-win.vcxproj -> G:\Homework\OS\exp6\ush\win\ush-win\Debug\ush-win.pdb (Full PDB)

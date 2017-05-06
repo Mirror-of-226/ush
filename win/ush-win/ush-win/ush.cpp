@@ -4,7 +4,9 @@
 using namespace std;
 
 void ush::loadMBF() {
-	MBC.insert(pair<string, builtin_cmd*>("test",new test()));
+	typedef pair<string, builtin_cmd*> sbp;
+	MBC.insert(sbp("test",new test()));
+	MBC.insert(sbp("utime", new utime()));
 }
 
 ush::ush()
@@ -16,9 +18,7 @@ ush::ush()
 		for (int i = 0; i < num; i++) {
 			printf("%s\n",s[i]);
 		}
-		int a = 1;
-		char *a1[] = { "China","French","America","German" };
-		MBC[s[0]]->run(a,a1);
+		MBC[s[0]]->run(num,s);
 	}
 }
 
