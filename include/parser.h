@@ -4,5 +4,5 @@
 class Parser
 {
 public:
-    char **run(const char args[]);
+    char **run(const char *line);
 }
