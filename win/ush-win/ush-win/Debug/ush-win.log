@@ -1,3 +1,6 @@
-﻿  ush.cpp
+﻿  parser.cpp
+  ush.cpp
+  test.cpp
+  Generating Code...
   ush-win.vcxproj -> G:\Homework\OS\exp6\ush\win\ush-win\Debug\ush-win.exe
   ush-win.vcxproj -> G:\Homework\OS\exp6\ush\win\ush-win\Debug\ush-win.pdb (Full PDB)

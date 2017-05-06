@@ -9,7 +9,7 @@
 class ush
 {
 	char input_buf[INPUT_BUF_SIZE];
-	//std::map<std::string, builtin_cmd> MBC; // mapping of builtin command
+	std::map<std::string, builtin_cmd> MBC; // mapping of builtin command
 	void loadMBF();
 public:
 	ush();

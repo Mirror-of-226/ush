@@ -2,7 +2,7 @@
 #define _BUILTIN_FUNC_H
 
 class builtin_cmd {
-    virtual void run(int argc, char *argv[]) = 0;
+	void run(int argc, char *argv[]);
 };
 
 //builtin command types
