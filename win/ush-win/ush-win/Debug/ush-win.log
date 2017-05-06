@@ -1,6 +1,6 @@
-﻿  parser.cpp
-  ush.cpp
-  test.cpp
+﻿  ush.cpp
   Generating Code...
+  Skipping... (no relevant changes detected)
+  parser.cpp
   ush-win.vcxproj -> G:\Homework\OS\exp6\ush\win\ush-win\Debug\ush-win.exe
   ush-win.vcxproj -> G:\Homework\OS\exp6\ush\win\ush-win\Debug\ush-win.pdb (Full PDB)
