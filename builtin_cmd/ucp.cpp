@@ -1,3 +1,5 @@
+#ifdef LINUX
+
 #include "../include/builtin_cmd.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -179,3 +181,5 @@ void ucp::copySymLink(char *src, char *dst)
     struct timespec times[2] = {st.st_atim, st.st_mtim};
     int result = utimensat(AT_FDCWD, dst, times, AT_SYMLINK_NOFOLLOW);
 }
+
+#endif // !LINUX

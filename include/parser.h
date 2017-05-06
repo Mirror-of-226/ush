@@ -6,3 +6,4 @@ class Parser
 public:
     char **run(const char *line);
 }
+#endif

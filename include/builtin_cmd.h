@@ -2,8 +2,8 @@
 #define _BUILTIN_FUNC_H
 
 class builtin_cmd {
-    virtual run(int argc, char *argv[]) = 0;
-}
+    virtual void run(int argc, char *argv[]) = 0;
+};
 
 //builtin command types
 class ucp: public builtin_cmd
@@ -27,3 +27,10 @@ public:
     void copySymLink(char *src, char *dst);
     
 };
+
+class test : public builtin_cmd {
+public:	
+	void run(int argc, char *argv[]);
+};
+
+#endif

@@ -1,3 +1,6 @@
+#ifdef LINUX
+
+
 #include "../include/parser.h"
 
 #define USH_TOK_DELIM " \t\r\n\a"
@@ -35,3 +38,4 @@ char **Parser::run(const char* line) {
     tokens[index] = NULL;
     return tokens;
 }
+#endif // LINUX
