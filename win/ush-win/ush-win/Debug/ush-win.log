@@ -1,3 +1,11 @@
 ﻿  ush.cpp
-  ush-win.vcxproj -> G:\Homework\OS\exp6\ush\win\ush-win\Debug\ush-win.exe
-  ush-win.vcxproj -> G:\Homework\OS\exp6\ush\win\ush-win\Debug\ush-win.pdb (Full PDB)
+g:\homework\os\exp6\ush\win\ush-win\ush-win\utility\builtin_func.h(2): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\program files (x86)\microsoft visual studio 14.0\vc\include\sal.h(2361): error C2143: syntax error: missing ';' before 'string'
+c:\program files (x86)\microsoft visual studio 14.0\vc\include\sal.h(2361): error C2059: syntax error: 'string'
+c:\program files (x86)\microsoft visual studio 14.0\vc\include\sal.h(2361): error C2143: syntax error: missing ';' before '{'
+c:\program files (x86)\microsoft visual studio 14.0\vc\include\sal.h(2361): error C2447: '{': missing function header (old-style formal list?)
+g:\homework\os\exp6\ush\win\ush-win\ush-win\ush.h(10): error C2143: syntax error: missing ';' before '<'
+g:\homework\os\exp6\ush\win\ush-win\ush-win\ush.h(10): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+g:\homework\os\exp6\ush\win\ush-win\ush-win\ush.h(10): error C2238: unexpected token(s) preceding ';'
+g:\homework\os\exp6\ush\win\ush-win\ush-win\utility\builtin_func.h(1): error C2011: 'builtin_func': 'class' type redefinition
+  g:\homework\os\exp6\ush\win\ush-win\ush-win\utility\builtin_func.h(1): note: see declaration of 'builtin_func'
