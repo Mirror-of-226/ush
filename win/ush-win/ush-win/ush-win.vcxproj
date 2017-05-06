@@ -118,10 +118,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\builtin_cmd.h" />
+    <ClInclude Include="include\flag.h" />
+    <ClInclude Include="include\parser.h" />
+    <ClInclude Include="include\types.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="ush.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="builtin_cmd\test.cpp" />
+    <ClCompile Include="builtin_cmd\ucd.cpp" />
+    <ClCompile Include="builtin_cmd\ucp.cpp" />
+    <ClCompile Include="builtin_cmd\uln.cpp" />
+    <ClCompile Include="builtin_cmd\umkdir.cpp" />
     <ClCompile Include="ush.cpp" />
+    <ClCompile Include="utility\parser.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ush-win.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

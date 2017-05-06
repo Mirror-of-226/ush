@@ -1,7 +1,7 @@
 #include "ush.h"
 #include <stdio.h>
 #include <map>
-#include "utility/builtin_func.h"
+#include "include\builtin_cmd.h"
 
 using namespace std;
 
@@ -23,5 +23,9 @@ ush::~ush()
 }
 
 int main() {
-	ush* u1 = new ush();
+	//ush* u1 = new ush();
+	test* t1 = new test();
+	char *a[] = { "China","French","America","German" };
+	t1->run(1, a);
+	system("pause");
 }

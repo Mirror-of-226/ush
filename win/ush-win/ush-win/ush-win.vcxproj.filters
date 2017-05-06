@@ -13,15 +13,62 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\utility">
+      <UniqueIdentifier>{f0a29b53-80ea-48b0-95c4-fd9790ecc3ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\include">
+      <UniqueIdentifier>{32318cc2-b7b7-409d-beda-b0131ff391bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\builtin_cmd">
+      <UniqueIdentifier>{c7370ac2-2d2b-449a-892c-8000324f7930}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\builtin_cmd.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\flag.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\parser.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\types.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
     <ClInclude Include="ush.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ush.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="utility\parser.cpp">
+      <Filter>Source Files\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="builtin_cmd\ucd.cpp">
+      <Filter>Source Files\builtin_cmd</Filter>
+    </ClCompile>
+    <ClCompile Include="builtin_cmd\ucp.cpp">
+      <Filter>Source Files\builtin_cmd</Filter>
+    </ClCompile>
+    <ClCompile Include="builtin_cmd\uln.cpp">
+      <Filter>Source Files\builtin_cmd</Filter>
+    </ClCompile>
+    <ClCompile Include="builtin_cmd\umkdir.cpp">
+      <Filter>Source Files\builtin_cmd</Filter>
+    </ClCompile>
+    <ClCompile Include="builtin_cmd\test.cpp">
+      <Filter>Source Files\builtin_cmd</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ush-win.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
