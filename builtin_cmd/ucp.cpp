@@ -2,39 +2,14 @@
 
 #include "../include/builtin_cmd.h"
 #include "../include/ush.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <dirent.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <utime.h>
 
-void ucp::run(int argc, char *argv[]) {
-    if (argc < 3) {
-        printf("Usage:\n  ucp [src] [des]\n");
-        exit(1);
-    }
-    char src[BUF_SIZE], dst[BUF_SIZE];
-    strcpy(src, argv[1]);
-    strcpy(dst, argv[2]);
-    struct stat st;
-    if (lstat(src, &st) == 0) {
-        switch (st.st_mode & S_IFMT) {
-            case S_IFREG: this->copyFile(src, dst); break;
-            case S_IFDIR: this->copyDir(src, dst); break;
-            case S_IFLNK: this->copySymLink(src, dst); break;
-            default: break;
-        }
-    }
-    else {
-        printf("ucp: %s: No such file or directory\n", src);
-    }
-}
+void setTime(char *path, struct stat st);
+void copyFile(char *src, char *dst);
+void walkDir(char *src, char *dst);
+void copyDir(char *src, char *dst);
+void copySymLink(char *src, char *dst);
 
-void ucp::setTime(char *path, struct stat st)
+void setTime(char *path, struct stat st)
 {
     struct utimbuf timebuf;
     timebuf.actime = st.st_atime;
@@ -44,7 +19,7 @@ void ucp::setTime(char *path, struct stat st)
     }
 }
 
-void ucp::copyFile(char *src, char *dst)
+void copyFile(char *src, char *dst)
 {
     struct stat st;
     lstat(src, &st);
@@ -87,13 +62,13 @@ void ucp::copyFile(char *src, char *dst)
             exit(-1);
         }
     }
-    this->setTime(dst, st);
+    setTime(dst, st);
 
     close(srcFile);
     close(dstFile);
 }
 
-void ucp::walkDir(char *src, char *dst)
+void walkDir(char *src, char *dst)
 {
     struct dirent *entry;
     DIR* dir;
@@ -115,9 +90,9 @@ void ucp::walkDir(char *src, char *dst)
         strcat(dstpath, entry->d_name);
 
         switch (entry->d_type) {
-            case DT_REG: this->copyFile(srcpath, dstpath); break;
-            case DT_DIR: this->copyDir(srcpath, dstpath); break;
-            case DT_LNK: this->copySymLink(srcpath, dstpath); break;
+            case DT_REG: copyFile(srcpath, dstpath); break;
+            case DT_DIR: copyDir(srcpath, dstpath); break;
+            case DT_LNK: copySymLink(srcpath, dstpath); break;
             default: break;
         }
         //printf("%s %s\n", srcpath, dstpath);
@@ -125,7 +100,7 @@ void ucp::walkDir(char *src, char *dst)
     closedir(dir);
 }
 
-void ucp::copyDir(char *src, char *dst)
+void copyDir(char *src, char *dst)
 {
     struct stat st;
     lstat(src, &st);
@@ -155,12 +130,12 @@ void ucp::copyDir(char *src, char *dst)
     umask(0);
     unsigned int mode = (0777) & st.st_mode;
     mkdir(dst, mode);
-    this->walkDir(src, dst);
-    this->setTime(dst, st);
+    walkDir(src, dst);
+    setTime(dst, st);
 
 }
 
-void ucp::copySymLink(char *src, char *dst)
+void copySymLink(char *src, char *dst)
 {
     struct stat st;
     lstat(src, &st);
@@ -184,6 +159,28 @@ void ucp::copySymLink(char *src, char *dst)
     int result = utimensat(AT_FDCWD, dst, times, AT_SYMLINK_NOFOLLOW);
 #endif
 
+}
+
+void ucp::run(int argc, char *argv[]) {
+    if (argc < 3) {
+        printf("Usage:\n  ucp [src] [des]\n");
+        exit(1);
+    }
+    char src[BUF_SIZE], dst[BUF_SIZE];
+    strcpy(src, argv[1]);
+    strcpy(dst, argv[2]);
+    struct stat st;
+    if (lstat(src, &st) == 0) {
+        switch (st.st_mode & S_IFMT) {
+            case S_IFREG: copyFile(src, dst); break;
+            case S_IFDIR: copyDir(src, dst); break;
+            case S_IFLNK: copySymLink(src, dst); break;
+            default: break;
+        }
+    }
+    else {
+        printf("ucp: %s: No such file or directory\n", src);
+    }
 }
 
 #endif
