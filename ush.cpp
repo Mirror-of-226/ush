@@ -8,19 +8,32 @@ void ush::loadMBF() {
 	MBC.insert(pair<string, builtin_cmd*>("ucd", new ucd()));
 	MBC.insert(pair<string, builtin_cmd*>("ucp", new ucp()));
     MBC.insert(pair<string, builtin_cmd*>("upwd", new upwd()));
+    MBC.insert(pair<string, builtin_cmd*>("uecho", new uecho()));
     MBC.insert(pair<string, builtin_cmd*>("umkdir", new umkdir()));
 }
 
 ush::ush()
 {
 	loadMBF();
-	while (gets(input_buf)) {
+	while (true) {
+
+        printf("> ");
+        gets(input_buf);
 		int num = 0;
 		char **s = Parser::run(input_buf, num);
-		for (int i = 0; i < num; i++) {
-			printf("%s\n",s[i]);
-		}
-		MBC[s[0]]->run(num, s);
+
+        if (strcmp(s[0], "uexit") == 0) {
+            break;
+        }
+        std::map<std::string, builtin_cmd*>::iterator iter;
+        iter = MBC.find(s[0]);
+
+        if (iter != MBC.end()) {
+            MBC[s[0]]->run(num, s);
+        }
+        else {
+            printf("ush: command not found: %s\n", s[0]);
+        }
 	}
 }
 
