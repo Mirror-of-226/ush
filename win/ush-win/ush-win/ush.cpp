@@ -6,7 +6,8 @@ using namespace std;
 void ush::loadMBF() {
 	typedef pair<string, builtin_cmd*> sbp;
 	MBC.insert(sbp("test",new test()));
-	MBC.insert(sbp("utime", new utime()));
+	MBC.insert(sbp("utime",new utime()));
+	MBC.insert(sbp("ucp", new ucp()));
 }
 
 ush::ush()
@@ -28,14 +29,6 @@ ush::~ush()
 }
 
 int main() {
-	/*builtin_cmd* bt = new test();
-	int a = 1;
-	char *a1[] = { "China","French","America","German" };
-	bt->run(a, a1);*/
 	ush* u1 = new ush();
-	/*test* t1 = new test();
-	char *a[] = { "China","French","America","German" };
-	t1->run(1, a);
-	system("pause");*/
 	system("pause");
 }

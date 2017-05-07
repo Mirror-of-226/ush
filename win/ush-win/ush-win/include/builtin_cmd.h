@@ -12,11 +12,6 @@ class ucp : public builtin_cmd
 {
 public:
 	void run(int argc, char *argv[]);
-	void setTime(char *path, struct stat st);
-	void copyFile(char *src, char *dst);
-	void walkDir(char *src, char *dst);
-	void copyDir(char *src, char *dst);
-	void copySymLink(char *src, char *dst);
 };
 
 class ucd : public builtin_cmd
