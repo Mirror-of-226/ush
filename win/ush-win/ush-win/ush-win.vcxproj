@@ -130,9 +130,12 @@
     <ClCompile Include="builtin_cmd\test.cpp" />
     <ClCompile Include="builtin_cmd\ucd.cpp" />
     <ClCompile Include="builtin_cmd\ucp.cpp" />
+    <ClCompile Include="builtin_cmd\ukill.cpp" />
     <ClCompile Include="builtin_cmd\uln.cpp" />
     <ClCompile Include="builtin_cmd\umkdir.cpp" />
+    <ClCompile Include="builtin_cmd\ups.cpp" />
     <ClCompile Include="builtin_cmd\utime.cpp" />
+    <ClCompile Include="builtin_cmd\utype.cpp" />
     <ClCompile Include="ush.cpp" />
     <ClCompile Include="utility\parser.cpp" />
   </ItemGroup>

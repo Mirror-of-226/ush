@@ -68,6 +68,15 @@
     <ClCompile Include="builtin_cmd\utime.cpp">
       <Filter>Source Files\builtin_cmd</Filter>
     </ClCompile>
+    <ClCompile Include="builtin_cmd\ups.cpp">
+      <Filter>Source Files\builtin_cmd</Filter>
+    </ClCompile>
+    <ClCompile Include="builtin_cmd\ukill.cpp">
+      <Filter>Source Files\builtin_cmd</Filter>
+    </ClCompile>
+    <ClCompile Include="builtin_cmd\utype.cpp">
+      <Filter>Source Files\builtin_cmd</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ush-win.rc">
