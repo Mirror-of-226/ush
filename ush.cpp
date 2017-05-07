@@ -4,25 +4,22 @@
 using namespace std;
 
 void ush::loadMBF() {
-	MBC.insert(pair<string, builtin_cmd*>("test",new test()));
-	MBC.insert(pair<string, builtin_cmd*>("ucd", new ucd());
+	//MBC.insert(pair<string, builtin_cmd*>("test",new test()));
+	MBC.insert(pair<string, builtin_cmd*>("ucd", new ucd()));
 }
 
 ush::ush()
 {
 	loadMBF();
-	while (gets_s(input_buf)) {
+	while (gets(input_buf)) {
 		int num = 0;
 		char **s = Parser::run(input_buf, num);
 		for (int i = 0; i < num; i++) {
 			printf("%s\n",s[i]);
 		}
-		int a = 1;
-		char *a1[] = { "China","French","America","German" };
-		MBC[s[0]]->run(a,a1);
+		MBC[s[0]]->run(num, s);
 	}
 }
-
 
 ush::~ush()
 {
@@ -38,5 +35,4 @@ int main() {
 	char *a[] = { "China","French","America","German" };
 	t1->run(1, a);
 	system("pause");*/
-	system("pause");
 }

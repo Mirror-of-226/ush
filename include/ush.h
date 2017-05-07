@@ -1,8 +1,9 @@
 #pragma once
-#include <stdio.h>
 #include <map>
-#include "../include/builtin_cmd.h"
+#include <stdio.h>
 #include <vector>
+#include <string>
+#include "../include/builtin_cmd.h"
 
 #define BUF_SIZE 1024
 #define INPUT_BUF_SIZE 1024
