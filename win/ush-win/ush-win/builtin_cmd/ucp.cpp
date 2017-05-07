@@ -183,7 +183,7 @@ void copySymLink(char *src, char *dst)
 }
 
 #endif !LINUX
-#ifdef WIN32
+#ifdef _WIN32
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -456,7 +456,7 @@ void enum_files(LPSTR srcFolderName, LPSTR dstFolderName)
 void ucp::run(int argc, char* args[])
 {
 	if (argc != 3) {
-		printf("usage: mycp [source path] [destination path]");
+		printf("usage: ucp [source path] [destination path]");
 		return;
 	}
 	errors.clear();

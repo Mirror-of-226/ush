@@ -8,6 +8,7 @@ void ush::loadMBF() {
 	MBC.insert(sbp("test",new test()));
 	MBC.insert(sbp("utime",new utime()));
 	MBC.insert(sbp("ucp", new ucp()));
+	MBC.insert(sbp("umkdir", new umkdir()));
 }
 
 ush::ush()

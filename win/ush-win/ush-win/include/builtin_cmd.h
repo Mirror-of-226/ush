@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _BUILTIN_FUNC_H
 #define _BUILTIN_FUNC_H
 #include "flag.h"
@@ -26,6 +27,10 @@ public:
 };
 
 class utime : public builtin_cmd {
+public:
+	void run(int argc, char *argv[]);
+};
+class umkdir : public builtin_cmd {
 public:
 	void run(int argc, char *argv[]);
 };
