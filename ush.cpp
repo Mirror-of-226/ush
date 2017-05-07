@@ -1,10 +1,11 @@
-#include "include\ush.h"
-#include "include\parser.h"
+#include "include/ush.h"
+#include "include/parser.h"
 
 using namespace std;
 
 void ush::loadMBF() {
 	MBC.insert(pair<string, builtin_cmd*>("test",new test()));
+	MBC.insert(pair<string, builtin_cmd*>("ucd", new ucd());
 }
 
 ush::ush()
