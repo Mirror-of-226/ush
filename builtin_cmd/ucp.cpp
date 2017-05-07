@@ -1,6 +1,7 @@
-#ifdef LINUX
+#if defined(__APPLE__)  || defined(__MACH__) || defined(__linux__) || defined(linux) || defined(__linux)
 
 #include "../include/builtin_cmd.h"
+#include "../include/ush.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -16,20 +17,20 @@ void ucp::run(int argc, char *argv[]) {
         printf("Usage:\n  ucp [src] [des]\n");
         exit(1);
     }
-    char src[NAMESIZE], dst[NAMESIZE];
+    char src[BUF_SIZE], dst[BUF_SIZE];
     strcpy(src, argv[1]);
     strcpy(dst, argv[2]);
     struct stat st;
     if (lstat(src, &st) == 0) {
         switch (st.st_mode & S_IFMT) {
-            case S_IFREG: this.copyFile(src, dst); break;
-            case S_IFDIR: this.copyDir(src, dst); break;
-            case S_IFLNK: this.copySymLink(src, dst); break;
+            case S_IFREG: this->copyFile(src, dst); break;
+            case S_IFDIR: this->copyDir(src, dst); break;
+            case S_IFLNK: this->copySymLink(src, dst); break;
             default: break;
         }
     }
     else {
-        printf("mycp: %s: No such file or directory\n", src);
+        printf("ucp: %s: No such file or directory\n", src);
     }
 }
 
@@ -55,7 +56,7 @@ void ucp::copyFile(char *src, char *dst)
     if (dstFile >= 0) {
         printf("ucp: %s: File already exits\n", dst);
         printf("Do you want to replace the existing file (yes/no)? ");
-        char input[BUFFSIZE];
+        char input[BUF_SIZE];
         while (1) {
             scanf("%s", input);
             if (strcmp("yes", input) == 0) {
@@ -77,8 +78,8 @@ void ucp::copyFile(char *src, char *dst)
     dstFile = creat(dst, mode);
 
     int n;
-    char buf[BUFFSIZE];
-    while ((n = read(srcFile, buf, BUFFSIZE)) > 0) {
+    char buf[BUF_SIZE];
+    while ((n = read(srcFile, buf, BUF_SIZE)) > 0) {
         if (write(dstFile, buf, n) != n) {
             printf("write error\n");
             close(srcFile);
@@ -86,7 +87,7 @@ void ucp::copyFile(char *src, char *dst)
             exit(-1);
         }
     }
-    this.setTime(dst, st);
+    this->setTime(dst, st);
 
     close(srcFile);
     close(dstFile);
@@ -100,7 +101,7 @@ void ucp::walkDir(char *src, char *dst)
         printf("opendir error\n");
         exit(1);
     }
-    char srcpath[NAMESIZE], dstpath[NAMESIZE];
+    char srcpath[BUF_SIZE], dstpath[BUF_SIZE];
 
     while ((entry = readdir(dir)) != NULL) {
 
@@ -114,9 +115,9 @@ void ucp::walkDir(char *src, char *dst)
         strcat(dstpath, entry->d_name);
 
         switch (entry->d_type) {
-            case DT_REG: this.copyFile(srcpath, dstpath); break;
-            case DT_DIR: this.copyDir(srcpath, dstpath); break;
-            case DT_LNK: this.copySymLink(srcpath, dstpath); break;
+            case DT_REG: this->copyFile(srcpath, dstpath); break;
+            case DT_DIR: this->copyDir(srcpath, dstpath); break;
+            case DT_LNK: this->copySymLink(srcpath, dstpath); break;
             default: break;
         }
         //printf("%s %s\n", srcpath, dstpath);
@@ -134,7 +135,7 @@ void ucp::copyDir(char *src, char *dst)
     if (dstDir != NULL) {
         printf("mycp: %s: Directory already exits\n", dst);
         printf("Do you want to replace the existing Directory (yes/no)? ");
-        char input[BUFFSIZE];
+        char input[BUF_SIZE];
         while (1) {
             scanf("%s", input);
             if (strcmp("yes", input) == 0) {
@@ -154,8 +155,8 @@ void ucp::copyDir(char *src, char *dst)
     umask(0);
     unsigned int mode = (0777) & st.st_mode;
     mkdir(dst, mode);
-    this.walkDir(src, dst);
-    this.setTime(dst, st);
+    this->walkDir(src, dst);
+    this->setTime(dst, st);
 
 }
 
@@ -164,8 +165,8 @@ void ucp::copySymLink(char *src, char *dst)
     struct stat st;
     lstat(src, &st);
 
-    char buf[BUFFSIZE];
-    int srcLink = readlink(src, buf, BUFFSIZE);
+    char buf[BUF_SIZE];
+    int srcLink = readlink(src, buf, BUF_SIZE);
     if (srcLink <= 0) {
         printf("readlink error\n");
         exit(1);
@@ -178,8 +179,11 @@ void ucp::copySymLink(char *src, char *dst)
     unsigned int mode = (0777) & st.st_mode;
     chmod(dst, mode);
 
+#if defined(__linux__) || defined(linux) || defined(__linux)
     struct timespec times[2] = {st.st_atim, st.st_mtim};
     int result = utimensat(AT_FDCWD, dst, times, AT_SYMLINK_NOFOLLOW);
+#endif
+
 }
 
-#endif // !LINUX
+#endif

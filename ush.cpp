@@ -6,6 +6,7 @@ using namespace std;
 void ush::loadMBF() {
 	//MBC.insert(pair<string, builtin_cmd*>("test",new test()));
 	MBC.insert(pair<string, builtin_cmd*>("ucd", new ucd()));
+	MBC.insert(pair<string, builtin_cmd*>("ucp", new ucp()));
 }
 
 ush::ush()
@@ -25,14 +26,8 @@ ush::~ush()
 {
 }
 
-int main() {
-	/*builtin_cmd* bt = new test();
-	int a = 1;
-	char *a1[] = { "China","French","America","German" };
-	bt->run(a, a1);*/
-	ush* u1 = new ush();
-	/*test* t1 = new test();
-	char *a[] = { "China","French","America","German" };
-	t1->run(1, a);
-	system("pause");*/
+int main()
+{
+	ush* USH = new ush();
+	return 0;
 }
