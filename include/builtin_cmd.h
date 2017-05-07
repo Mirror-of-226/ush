@@ -47,4 +47,8 @@ public:
 	void run(int argc, char *argv[]);
 };
 
+class upwd : public builtin_cmd {
+public:
+	void run(int argc, char *argv[]);
+};
 #endif

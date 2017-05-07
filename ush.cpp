@@ -7,6 +7,8 @@ void ush::loadMBF() {
 	//MBC.insert(pair<string, builtin_cmd*>("test",new test()));
 	MBC.insert(pair<string, builtin_cmd*>("ucd", new ucd()));
 	MBC.insert(pair<string, builtin_cmd*>("ucp", new ucp()));
+    MBC.insert(pair<string, builtin_cmd*>("upwd", new upwd()));
+    MBC.insert(pair<string, builtin_cmd*>("umkdir", new umkdir()));
 }
 
 ush::ush()
