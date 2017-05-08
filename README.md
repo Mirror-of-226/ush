@@ -5,45 +5,18 @@
 
 ## Builtin commands
 
-- [ ] cd
-
-
-- [ ] umkdir
-
-
-- [ ] ucp
-
-
-- [ ] uln
-
-
-- [ ] kill
-
-
-- [ ] ups
-
-
+- [x] ucd
+- [x] ucp
+- [x] echo
+- [x] uhelp
+- [x] ukill
+- [x] uls
+- [x] umkdir
+- [x] ups
+- [x] upwd
+- [x] urm
 - [x] utime
-
-
-- [ ] echo
-
-
-- [ ] alias
-
-
-- [ ] type
-
-
-- [ ] bg
-
-
-- [ ] help
-
-
-- [ ] pwd
-
-
+- [x] utype
 
 ## License
 
