@@ -4,14 +4,15 @@
 using namespace std;
 
 #ifdef _WIN32
-#define gets_s gets
+#define gets gets_s
 #endif
 
-
+#if defined(__APPLE__)  || defined(__MACH__) || defined(__linux__) || defined(linux) || defined(__linux)
 void ush::setNowPath() {
     getcwd(now_path, sizeof(now_path));
 
 }
+#endif
 
 void ush::loadMBF() {
 	typedef pair<string, builtin_cmd*> sbp;
