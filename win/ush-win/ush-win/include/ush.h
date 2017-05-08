@@ -11,6 +11,7 @@
 class ush
 {
 	char input_buf[INPUT_BUF_SIZE];
+	char now_path[BUF_SIZE];
 	std::map<std::string, builtin_cmd*> MBC; // mapping of builtin command
 	void loadMBF();
 public:

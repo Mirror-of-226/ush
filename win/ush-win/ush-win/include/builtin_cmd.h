@@ -17,7 +17,9 @@ public:
 
 class ucd : public builtin_cmd
 {
+	char *now_path;
 public:
+	ucd(char *_now_path);
 	void run(int argc, char *argv[]);
 };
 
@@ -50,6 +52,27 @@ class utype : public builtin_cmd {
 	std::map<std::string, builtin_cmd*>* mbc;
 public:
 	utype(std::map<std::string, builtin_cmd*>& _mbc);
+	void run(int argc, char *argv[]);
+};
+
+class uls : public builtin_cmd {
+	char *now_path;
+public:
+	uls(char *_now_path);
+	void run(int argc, char *argv[]);
+};
+
+class upwd : public builtin_cmd {
+	char *now_path;
+public:
+	upwd(char *_now_path);
+	void run(int argc, char *argv[]);
+};
+
+class urm : public builtin_cmd {
+	char *now_path;
+public:
+	urm(char *_now_path);
 	void run(int argc, char *argv[]);
 };
 

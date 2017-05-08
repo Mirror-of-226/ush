@@ -12,19 +12,27 @@ void ush::loadMBF() {
 	MBC.insert(sbp("ups", new ups()));
 	MBC.insert(sbp("ukill", new ukill()));
 	MBC.insert(sbp("utype", new utype(getMBC())));
+	MBC.insert(sbp("uls", new uls(now_path)));
+	MBC.insert(sbp("ucd", new ucd(now_path)));
+	MBC.insert(sbp("upwd", new upwd(now_path)));
+	MBC.insert(sbp("urm", new urm(now_path)));
 }
 
 ush::ush()
 {
+	strcpy(now_path, "C:\\");
 	loadMBF();
+	printf("Welcome to use universal shell writen by Chen Jiangui and Chi Zewen.\nCopyright 2017 Chen Jiangui and Chi Zewen. All Rights Reserved.\n\n%s>", now_path);
 	while (gets_s(input_buf)) {
 		int num = 0;
 		char **s = Parser::run(input_buf, num);
-		for (int i = 0; i < num; i++) {
-			printf("%s\n",s[i]);
+		if (num == 0) {
+			printf("\n%s>", now_path);
+			continue;
 		}
 		if(MBC.find(s[0]) != MBC.end()) MBC[s[0]]->run(num,s);
 		else printf("order not found.\n");
+		printf("\n%s>", now_path);
 	}
 }
 

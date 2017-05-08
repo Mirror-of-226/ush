@@ -132,8 +132,11 @@
     <ClCompile Include="builtin_cmd\ucp.cpp" />
     <ClCompile Include="builtin_cmd\ukill.cpp" />
     <ClCompile Include="builtin_cmd\uln.cpp" />
+    <ClCompile Include="builtin_cmd\uls.cpp" />
     <ClCompile Include="builtin_cmd\umkdir.cpp" />
     <ClCompile Include="builtin_cmd\ups.cpp" />
+    <ClCompile Include="builtin_cmd\upwd.cpp" />
+    <ClCompile Include="builtin_cmd\urm.cpp" />
     <ClCompile Include="builtin_cmd\utime.cpp" />
     <ClCompile Include="builtin_cmd\utype.cpp" />
     <ClCompile Include="ush.cpp" />
