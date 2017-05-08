@@ -14,6 +14,9 @@
 #include <dirent.h>
 #include <fcntl.h>
 #include <utime.h>
+#include <time.h>
+#include <pwd.h>
+#include <grp.h>
 #endif
 
 class builtin_cmd {
@@ -32,6 +35,12 @@ class ucd : public builtin_cmd
 {
 public:
 	void run(int argc, char *argv[]);
+};
+
+class uls : public builtin_cmd
+{
+public:
+    void run(int argc, char *argv[]);
 };
 
 class test : public builtin_cmd {
