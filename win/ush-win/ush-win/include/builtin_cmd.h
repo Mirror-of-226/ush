@@ -1,7 +1,23 @@
 #pragma once
 #ifndef _BUILTIN_FUNC_H
 #define _BUILTIN_FUNC_H
+#include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
 #include <map>
+#include <vector>
+
+#if defined(__APPLE__)  || defined(__MACH__) || defined(__linux__) || defined(linux) || defined(__linux)
+#include <unistd.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <dirent.h>
+#include <fcntl.h>
+#include <utime.h>
+#include <time.h>
+#include <pwd.h>
+#include <grp.h>
+#endif
 
 class builtin_cmd {
 public:
@@ -73,6 +89,18 @@ class urm : public builtin_cmd {
 	char *now_path;
 public:
 	urm(char *_now_path);
+	void run(int argc, char *argv[]);
+};
+
+class uecho : public builtin_cmd {
+public:
+	void run(int argc, char *argv[]);
+};
+
+class uhelp : public builtin_cmd {
+	std::map<std::string, builtin_cmd*>* mbc;
+public:
+	uhelp(std::map<std::string, builtin_cmd*>& _mbc);
 	void run(int argc, char *argv[]);
 };
 

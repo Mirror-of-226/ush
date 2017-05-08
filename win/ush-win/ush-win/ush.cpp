@@ -5,7 +5,6 @@ using namespace std;
 
 void ush::loadMBF() {
 	typedef pair<string, builtin_cmd*> sbp;
-	MBC.insert(sbp("test",new test()));
 	MBC.insert(sbp("utime",new utime()));
 	MBC.insert(sbp("ucp", new ucp()));
 	MBC.insert(sbp("umkdir", new umkdir()));
@@ -16,11 +15,15 @@ void ush::loadMBF() {
 	MBC.insert(sbp("ucd", new ucd(now_path)));
 	MBC.insert(sbp("upwd", new upwd(now_path)));
 	MBC.insert(sbp("urm", new urm(now_path)));
+	MBC.insert(sbp("uhelp", new uhelp(getMBC())));
+	MBC.insert(sbp("uecho", new uecho()));
 }
 
 ush::ush()
 {
+#ifdef _WIN32
 	strcpy(now_path, "C:\\");
+#endif // _WIN32
 	loadMBF();
 	printf("Welcome to use universal shell writen by Chen Jiangui and Chi Zewen.\nCopyright 2017 Chen Jiangui and Chi Zewen. All Rights Reserved.\n\n%s>", now_path);
 	while (gets_s(input_buf)) {
@@ -30,8 +33,11 @@ ush::ush()
 			printf("\n%s>", now_path);
 			continue;
 		}
+		if (strcmp(s[0], "uexit") == 0) {
+			break;
+		}
 		if(MBC.find(s[0]) != MBC.end()) MBC[s[0]]->run(num,s);
-		else printf("order not found.\n");
+		else printf("ush: command not found.\n");
 		printf("\n%s>", now_path);
 	}
 }

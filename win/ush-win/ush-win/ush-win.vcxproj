@@ -127,11 +127,11 @@
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="builtin_cmd\test.cpp" />
     <ClCompile Include="builtin_cmd\ucd.cpp" />
     <ClCompile Include="builtin_cmd\ucp.cpp" />
+    <ClCompile Include="builtin_cmd\uecho.cpp" />
+    <ClCompile Include="builtin_cmd\uhelp.cpp" />
     <ClCompile Include="builtin_cmd\ukill.cpp" />
-    <ClCompile Include="builtin_cmd\uln.cpp" />
     <ClCompile Include="builtin_cmd\uls.cpp" />
     <ClCompile Include="builtin_cmd\umkdir.cpp" />
     <ClCompile Include="builtin_cmd\ups.cpp" />

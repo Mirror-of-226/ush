@@ -85,7 +85,8 @@ void utime::run(int argc, char *argv[]) {
 
 }
 
-#elif LINUX
+#elif defined(__APPLE__)  || defined(__MACH__) || defined(__linux__) || defined(linux) || defined(__linux)
+
 
 #include<stdio.h>
 #include<unistd.h>
@@ -129,3 +130,4 @@ void utime::run(int argc, char *args[]) {
 }
 
 #endif // WINDOWS
+

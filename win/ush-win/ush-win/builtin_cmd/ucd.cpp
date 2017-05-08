@@ -1,19 +1,22 @@
 #include "../include/builtin_cmd.h"
 #include "../include/ush.h"
 
-#ifdef LINUX
+ucd::ucd(char *_now_path) {
+	now_path = _now_path;
+}
 
-#include <unistd.h>
+#if defined(__APPLE__)  || defined(__MACH__) || defined(__linux__) || defined(linux) || defined(__linux)
 
 void ucd::run(int argc, char *argv[])
 {
-    if (argv[1] == NULL) {
-      fprintf(stderr, "ush: expected argument to \"cd\"\n");
-    } else {
-      if (chdir(args[1]) != 0) {
-        perror("ush");
-      }
-    }
+	if (argv[1] == NULL) {
+		fprintf(stderr, "ush: expected argument to \"ucd\"\n");
+	}
+	else {
+		if (chdir(argv[1]) != 0) {
+			perror("ush");
+		}
+	}
 }
 
 #endif
@@ -22,10 +25,6 @@ void ucd::run(int argc, char *argv[])
 #include<windows.h>
 #include<vector>
 using namespace std;
-
-ucd::ucd(char *_now_path) {
-	now_path = _now_path;
-}
 
 void ucd::run(int argc, char* args[])
 {

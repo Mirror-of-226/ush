@@ -14,4 +14,3 @@ void utype::run(int argc, char *argv[]) {
 	}
 	else printf("%s not found.\n", argv[1]);
 }
-
