@@ -4,6 +4,7 @@
 
 #include "../include/builtin_cmd.h"
 #include "../include/ush.h"
+#include <utime.h>
 
 void setTime(char *path, struct stat st);
 void copyFile(char *src, char *dst);
@@ -42,7 +43,7 @@ void copyFile(char *src, char *dst)
 			else if (strcmp("no", input) == 0) {
 				close(srcFile);
 				close(dstFile);
-				exit(1);
+				return;
 			}
 			else {
 				printf("Please type 'yes' or 'no': ");
@@ -61,7 +62,7 @@ void copyFile(char *src, char *dst)
 			printf("write error\n");
 			close(srcFile);
 			close(dstFile);
-			exit(-1);
+			return;
 		}
 	}
 	setTime(dst, st);
@@ -76,7 +77,7 @@ void walkDir(char *src, char *dst)
 	DIR* dir;
 	if ((dir = opendir(src)) == NULL) {
 		printf("opendir error\n");
-		exit(1);
+		return;
 	}
 	char srcpath[BUF_SIZE], dstpath[BUF_SIZE];
 
@@ -121,7 +122,7 @@ void copyDir(char *src, char *dst)
 			else if (strcmp("no", input) == 0) {
 				closedir(srcDir);
 				closedir(dstDir);
-				exit(1);
+				return;
 			}
 			else {
 				printf("Please type 'yes' or 'no': ");
@@ -146,7 +147,7 @@ void copySymLink(char *src, char *dst)
 	int srcLink = readlink(src, buf, BUF_SIZE);
 	if (srcLink <= 0) {
 		printf("readlink error\n");
-		exit(1);
+		return;
 	}
 	buf[srcLink] = 0;
 	if (symlink(buf, dst) == -1) {
@@ -166,7 +167,7 @@ void copySymLink(char *src, char *dst)
 void ucp::run(int argc, char *argv[]) {
 	if (argc < 3) {
 		printf("Usage:\n  ucp [src] [des]\n");
-		exit(1);
+		return;
 	}
 	char src[BUF_SIZE], dst[BUF_SIZE];
 	strcpy(src, argv[1]);
@@ -219,7 +220,7 @@ HANDLE GetDirectoryHandle(LPCSTR directory)
 	return CreateFile(directory, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_FLAG_OPEN_REPARSE_POINT | FILE_FLAG_BACKUP_SEMANTICS, NULL);
 }
 
-// ÉèÖÃÎÄ¼þ¼ÐÊôÐÔ
+// ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 BOOL set_folder_attr(LPCSTR srcfolder, LPCSTR dstfolder)
 {
 	HANDLE hndsrc = GetDirectoryHandle(srcfolder);
@@ -248,7 +249,7 @@ BOOL set_folder_attr(LPCSTR srcfolder, LPCSTR dstfolder)
 		return FALSE;
 	}
 }
-// ´´½¨ÎÄ¼þ¼Ð, ²¢ÇÒ²»¸´ÖÆÊôÐÔ
+// ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 COPY_RESULT copy_folder(LPCSTR srcfolder, LPCSTR dstfolder)
 {
 	HANDLE hndsrc = GetDirectoryHandle(srcfolder);
@@ -281,7 +282,7 @@ COPY_RESULT copy_folder(LPCSTR srcfolder, LPCSTR dstfolder)
 
 }
 
-// ¸´ÖÆÎÄ¼þ, ²¢ÇÒ¸´ÖÆÊôÐÔ
+// ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½, ï¿½ï¿½ï¿½Ò¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 COPY_RESULT copy_file(LPCSTR srcfile, LPCSTR dstfile, LPCSTR filename)
 {
 	HANDLE hndsrc = CreateFile(srcfile, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -302,7 +303,7 @@ COPY_RESULT copy_file(LPCSTR srcfile, LPCSTR dstfile, LPCSTR filename)
 		}
 		else
 		{
-			// Ð´ÎÄ¼þÄÚÈÝ
+			// Ð´ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 			BYTE buffer[BUFFERSIZE];
 			DWORD bytesread;
 			DWORD byteswritten;
@@ -337,7 +338,7 @@ COPY_RESULT copy_file(LPCSTR srcfile, LPCSTR dstfile, LPCSTR filename)
 			{
 				FlushFileBuffers(hnddst);
 
-				// ¸´ÖÆÎÄ¼þÊôÐÔ
+				// ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 				FILE_BASIC_INFO basicInfo;
 				result_read = GetFileInformationByHandleEx(hndsrc, FileBasicInfo, &basicInfo, sizeof(basicInfo));
 				result_read = SetFileInformationByHandle(hnddst, FileBasicInfo, &basicInfo, sizeof(basicInfo));
@@ -371,14 +372,14 @@ void enum_files(LPSTR srcFolderName, LPSTR dstFolderName)
 	}
 	else
 	{
-		// ÓÃÓÚ´æ´¢µ±Ç°´¦Àí¶ÔÏóµÄÍêÕûÂ·¾¶
+		// ï¿½ï¿½ï¿½Ú´æ´¢ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½
 		char tSrcPath[260];
 		strcpy(tSrcPath, srcFolderName);
 		strcat(tSrcPath, "\\");
 		DWORD szsrcpath = strlen(tSrcPath);
 
 
-		// ´æ´¢¸´ÖÆÊ±ÐÂ¶ÔÏóµÄÍêÕûÂ·¾¶
+		// ï¿½æ´¢ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Â¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½
 		char tDstPath[260];
 		strcpy(tDstPath, dstFolderName);
 		strcat(tDstPath, "\\");
@@ -404,16 +405,16 @@ void enum_files(LPSTR srcFolderName, LPSTR dstFolderName)
 				tDstPath[szdstpath] = 0;
 				strcat(tDstPath, findData.cFileName);
 
-				// ´¦ÀíÎÄ¼þ¼Ð
+				// ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
 				if ((findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != FALSE)
 				{
 					hndFolder = GetDirectoryHandle(tSrcPath);
-					// ·ûºÅÁ´½Ó
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					if ((findData.dwFileAttributes & FILE_ATTRIBUTE_REPARSE_POINT) != FALSE)
 					{
 
 					}
-					// ·Ç·ûºÅÁ´½Ó
+					// ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					else
 					{
 						result = copy_folder(tSrcPath, tDstPath);
@@ -431,16 +432,16 @@ void enum_files(LPSTR srcFolderName, LPSTR dstFolderName)
 					}
 					CloseHandle(hndFolder);
 				}
-				// ´¦ÀíÎÄ¼þ
+				// ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
 				else
 				{
 					hndFile = GetFileHandle(tSrcPath);
-					// ·ûºÅÁ´½Ó
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					if ((findData.dwFileAttributes & FILE_ATTRIBUTE_REPARSE_POINT) != FALSE)
 					{
 
 					}
-					// ·Ç·ûºÅÁ´½Ó
+					// ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					else
 					{
 						result = copy_file(tSrcPath, tDstPath, findData.cFileName);
