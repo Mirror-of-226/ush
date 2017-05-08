@@ -3,6 +3,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <iostream>
+#include <map>
+#include <vector>
 
 #if defined(__APPLE__)  || defined(__MACH__) || defined(__linux__) || defined(linux) || defined(__linux)
 #include <unistd.h>
@@ -55,6 +58,13 @@ public:
 class uecho : public builtin_cmd {
 public:
     void run(int argc, char *argv[]);
+};
+
+class uhelp : public builtin_cmd {
+	std::map<std::string, builtin_cmd*>* mbc;
+public:
+	uhelp(std::map<std::string, builtin_cmd*>& _mbc);
+	void run(int argc, char *argv[]);
 };
 
 #endif

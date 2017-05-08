@@ -10,6 +10,11 @@ void ush::loadMBF() {
     MBC.insert(pair<string, builtin_cmd*>("upwd", new upwd()));
     MBC.insert(pair<string, builtin_cmd*>("uecho", new uecho()));
     MBC.insert(pair<string, builtin_cmd*>("umkdir", new umkdir()));
+    MBC.insert(pair<string, builtin_cmd*>("uhelp", new uhelp(getMBC())));
+}
+
+std::map<std::string, builtin_cmd*>& ush::getMBC() {
+    return MBC;
 }
 
 ush::ush()

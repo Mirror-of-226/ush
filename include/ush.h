@@ -16,5 +16,6 @@ class ush
 public:
 	ush();
 	~ush();
+	std::map<std::string, builtin_cmd*> &getMBC();
 };
 
