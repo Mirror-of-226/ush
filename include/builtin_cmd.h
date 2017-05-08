@@ -49,6 +49,11 @@ public:
     void run(int argc, char *argv[]);
 };
 
+class urm : public builtin_cmd
+{
+public:
+    void run(int argc, char *argv[]);
+};
 
 class ukill : public builtin_cmd
 {

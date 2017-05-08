@@ -7,27 +7,26 @@ void uls::run(int argc, char *argv[])
     if (argv[1] == NULL) {
         getcwd(dir, sizeof(dir));
     } else {
-        strcat(dir, argv[1]);
+        strcpy(dir, argv[1]);
     }
-    DIR *thedirectory;
-    struct dirent *thefile;
-    struct stat thestat;
+    DIR *dp;
+    struct dirent *entry;
+    struct stat statbuf;
     struct passwd *tf;
     struct group *gf;
 
     char buf[512];
 
-    thedirectory = opendir(dir);
-    if (thedirectory == NULL) {
+    if ((dp = opendir(dir)) == NULL) {
         perror("ush");
         return;
     }
 
-    while ((thefile = readdir(thedirectory)) != NULL) {
-        sprintf(buf, "%s/%s", dir, thefile->d_name);
-        stat(buf, &thestat);
+    while ((entry = readdir(dp)) != NULL) {
+        sprintf(buf, "%s/%s", dir, entry->d_name);
+        stat(buf, &statbuf);
 
-        switch (thestat.st_mode & S_IFMT) {
+        switch (statbuf.st_mode & S_IFMT) {
             case S_IFBLK: printf("b ");break;
             case S_IFCHR: printf("c ");break;
             case S_IFDIR: printf("d ");break;
@@ -37,27 +36,27 @@ void uls::run(int argc, char *argv[])
             default:printf("- ");break;
         }
 
-        printf((thestat.st_mode & S_IRUSR) ? " r" : " -");
-        printf((thestat.st_mode & S_IWUSR) ? "w" : "-");
-        printf((thestat.st_mode & S_IXUSR) ? "x" : "-");
-        printf((thestat.st_mode & S_IRGRP) ? "r" : "-");
-        printf((thestat.st_mode & S_IWGRP) ? "w" : "-");
-        printf((thestat.st_mode & S_IXGRP) ? "x" : "-");
-        printf((thestat.st_mode & S_IROTH) ? "r" : "-");
-        printf((thestat.st_mode & S_IWOTH) ? "w" : "-");
-        printf((thestat.st_mode & S_IXOTH) ? "x" : "-");
+        printf((statbuf.st_mode & S_IRUSR) ? " r" : " -");
+        printf((statbuf.st_mode & S_IWUSR) ? "w" : "-");
+        printf((statbuf.st_mode & S_IXUSR) ? "x" : "-");
+        printf((statbuf.st_mode & S_IRGRP) ? "r" : "-");
+        printf((statbuf.st_mode & S_IWGRP) ? "w" : "-");
+        printf((statbuf.st_mode & S_IXGRP) ? "x" : "-");
+        printf((statbuf.st_mode & S_IROTH) ? "r" : "-");
+        printf((statbuf.st_mode & S_IWOTH) ? "w" : "-");
+        printf((statbuf.st_mode & S_IXOTH) ? "x" : "-");
 
-        printf("\t%d ", thestat.st_nlink);
+        printf("\t%d ", statbuf.st_nlink);
 
-        tf = getpwuid(thestat.st_uid);
+        tf = getpwuid(statbuf.st_uid);
         printf("\t%s ", tf->pw_name);
 
-        gf = getgrgid(thestat.st_gid);
+        gf = getgrgid(statbuf.st_gid);
         printf("\t%s ", gf->gr_name);
 
-        printf("%lld", thestat.st_size);
-        printf(" %s", thefile->d_name);
-        printf(" %s", ctime(&thestat.st_mtime));
+        printf("%lld", statbuf.st_size);
+        printf(" %s", entry->d_name);
+        printf(" %s", ctime(&statbuf.st_mtime));
     }
-    closedir(thedirectory);
+    closedir(dp);
 }
