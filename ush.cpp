@@ -12,6 +12,7 @@ void ush::loadMBF() {
     MBC.insert(pair<string, builtin_cmd*>("umkdir", new umkdir()));
     MBC.insert(pair<string, builtin_cmd*>("uls", new uls()));
     MBC.insert(pair<string, builtin_cmd*>("ukill", new ukill()));
+    MBC.insert(pair<string, builtin_cmd*>("ups", new ups()));
     MBC.insert(pair<string, builtin_cmd*>("uhelp", new uhelp(getMBC())));
 }
 

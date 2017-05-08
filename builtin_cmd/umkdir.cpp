@@ -11,7 +11,7 @@ void umkdir::run(int argc, char *argv[]) {
     int status;
     status = mkdir(argv[1], S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
     if (status == -1) {
-        printf("umkdir error");
+        perror("ush");
     }
 }
 
